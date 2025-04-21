@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -27,6 +27,35 @@
         }, 1000);
       }
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const links = document.querySelectorAll("a");
+        links.forEach((link) => {
+          link.addEventListener("mouseover", function (e) {
+            const preview = link.nextElementSibling;
+            if (preview && preview.classList.contains("preview")) {
+              preview.style.left = e.pageX + 5 + "px";
+              preview.style.top = e.pageY + 5 + "px";
+            }
+          });
+        });
+      });
+    </script>
+    <style>
+      .preview {
+        display: none;
+        position: absolute;
+        background: white;
+        border: 1px solid #ccc;
+        padding: 1px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+      }
+      a:hover + .preview,
+      .preview:hover {
+        display: block;
+      }
+    </style>
   </head>
 
   <body class="bg-gray-900 text-white font-sans">
@@ -36,7 +65,7 @@
       <header
         class="text-center mb-2 hover:scale-105 transform transition duration-300"
       >
-        <!-- Profile Image -->       
+        <!-- Profile Image -->
         <img
           src="cv/assets/enamul-recent-photo-01-10-2024.jpg"
           alt="Enamul Hoque"
@@ -112,6 +141,15 @@
             </a>
           </li>
           <li class="text-center">
+            <a href="#Certification" class="relative hover:text-gray-400 block">
+              <span
+                class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-blue-700/10 ring-inset shadow-[0_0_15px_#3B82F6] hover:shadow-[0_0_30px_#3B82F6,0_0_40px_#3B82F6,0_0_50px_#3B82F6] transition-all duration-300"
+              >
+                Certification
+              </span>
+            </a>
+          </li>
+          <li class="text-center">
             <a
               href="#WorkExperience"
               class="relative hover:text-gray-400 block"
@@ -132,6 +170,15 @@
                 class="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-purple-700/10 ring-inset shadow-[0_0_15px_#8B5CF6] hover:shadow-[0_0_30px_#8B5CF6,0_0_40px_#8B5CF6,0_0_50px_#8B5CF6] transition-all duration-300"
               >
                 Hobbies & Activities
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#downloadable-section">
+              <span
+                class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset shadow-[0_0_15px_#10B981] hover:shadow-[0_0_30px_#10B981,0_0_40px_#10B981,0_0_50px_#10B981] transition-all duration-300"
+              >
+                downloadable-resume
               </span>
             </a>
           </li>
@@ -251,7 +298,7 @@
               <i class="fas fa-star text-yellow-400"></i>
             </div>
           </li>
-         <li
+          <li
             class="flex justify-between items-center"
             style="border-bottom: 1px dotted gray"
           >
@@ -387,6 +434,12 @@
               target="_blank"
               >SSC: Shaheed Aman Ullah High School (Comilla Board) - 2004</a
             >
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/ssc.jpg"
+                alt="SSC: Shaheed Aman Ullah High School (Comilla Board) - 2004"
+              />
+            </div>
           </li>
           <li>
             <a
@@ -395,6 +448,12 @@
               target="_blank"
               >HSC: MA Hasem University College (Comilla Board) - 2006</a
             >
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/hsc.jpg"
+                alt="HSC: MA Hasem University College (Comilla Board) - 2006"
+              />
+            </div>
           </li>
           <li>
             <a
@@ -403,36 +462,165 @@
               target="_blank"
               >BSc in Chemistry: National University - 2011</a
             >
-          </li>
-          <li>
-           <a 
-               href="cv/assets/Masters.png"
-              class="text-blue-400 hover:text-teal-400"
-              target="_blank">
-           MSc in Chemistry: National University - 2012
-          </a>
-          </li>
-         <li>
-           <a 
-               href="cv/assets/Masters-ICT.png"
-              class="text-blue-400 hover:text-teal-400"
-              target="_blank">
-           Masters in ICT: National University - 2012
-          </a>
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/bsc.jpg"
+                alt="BSc in Chemistry: National University - 2011"
+              />
+            </div>
           </li>
           <li>
             <a
-              href="cv/assets/profession-certificate-pgd.png"
+              href="cv/assets/Masters.png"
+              class="text-blue-400 hover:text-teal-400"
+              target="_blank"
+              >MSc in Chemistry: National University - 2012</a
+            >
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/Masters.png"
+                alt="MSc in Chemistry: National University - 2012"
+              />
+            </div>
+          </li>
+          <li>
+            <a
+              href="cv/assets/Masters-ICT.png"
+              class="text-blue-400 hover:text-teal-400"
+              target="_blank"
+              >Masters in ICT: National University - 2012</a
+            >
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/Masters-ICT.png"
+                alt="Masters in ICT: National University - 2012"
+              />
+            </div>
+          </li>
+          <li>
+            <a
+              href="cv/assets/IDB-BISEW.png"
               class="text-blue-400 hover:text-teal-400"
               target="_blank"
             >
               PGD in Enterprise Systems Analysis and Design with C#.NET: IDB
               Bishew – 2017
             </a>
+            <div class="preview print:hidden">
+              <img
+                src="cv/assets/IDB-BISEW.png"
+                alt="PGD in Enterprise Systems Analysis and Design with C#.NET: IDB
+              Bishew – 2017"
+              />
+            </div>
           </li>
         </ul>
       </section>
-
+      <section class="education mb-8" id="Certification">
+        <h2
+          class="text-xl font-semibold text-teal-400 border-b border-teal-500 pb-2"
+        >
+          Microsoft Certification
+        </h2>
+        <li>
+          <a
+            href="cv/assets/MicrosoftCertifiedSolutionsAssociate.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >Microsoft Certified Solutions Associate-2017
+          </a>
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/MicrosoftCertifiedSolutionsAssociate.png"
+              alt="Microsoft Certified Solutions Associate-2017"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/MicrosoftCertifiedProfessional.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >Microsoft Certified Professional-2016</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/MicrosoftCertifiedProfessional.png"
+              alt="Microsoft Certified Professional-2016"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/MicrosoftCertifiedSolutionsDeveloper.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >Microsoft Certified Solutions Developer-2017</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/MicrosoftCertifiedSolutionsDeveloper.png"
+              alt="Microsoft Certified Solutions Developer-2017"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/MicrosoftSpecialist.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >Microsoft Specialist-2016</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/MicrosoftSpecialist.png"
+              alt="Microsoft Specialist-2016"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/486.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >486 Developing ASP.NET MVC Web Applictions</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/486.png"
+              alt="486 Developing ASP.NET MVC Web Applictions"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/Web Application Development-Dot Net.jpeg"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >Web Application Development-Dot Net (under BITM)-2017</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/Web Application Development-Dot Net.jpeg"
+              alt="Web Application Development-Dot Net (under BITM)-2017"
+            />
+          </div>
+        </li>
+        <li>
+          <a
+            href="cv/assets/UI_UX.png"
+            class="text-blue-400 hover:text-teal-400"
+            target="_blank"
+            >UI/UX (under LICT Programme)-2017</a
+          >
+          <div class="preview print:hidden">
+            <img
+              src="cv/assets/UI_UX.png"
+              alt="UI/UX (under LICT Programme)-2017"
+            />
+          </div>
+        </li>
+      </section>
       <section class="mt-6" id="WorkExperience">
         <h2
           class="text-xl font-semibold text-teal-400 border-b border-teal-500 pb-2"
@@ -528,21 +716,24 @@
         </p>
       </section>
 
-      <footer class="text-center text-gray-400 mt-8 print:hidden">
+      <footer
+        class="text-center text-gray-400 mt-8 print:hidden"
+        id="downloadable-section"
+      >
         <p class="text-sm">
           Designed by Enamul Hoque |
+
           <a
-            href="https://www.linkedin.com/in/enamul-hoque-1a517a141"
+            href="cv/assets/ENM-1 -updated photo.docx"
             class="text-blue-400 hover:text-teal-400"
             target="_blank"
-            >LinkedIn</a
-          >
-          |
+            >Resume .docx file</a
+          >|
           <a
-            href="https://github.com/enamul007"
+            href="cv/assets/ENM-1 -updated photo.pdf"
             class="text-blue-400 hover:text-teal-400"
             target="_blank"
-            >GitHub</a
+            >Resume .pdf file</a
           >
         </p>
       </footer>
