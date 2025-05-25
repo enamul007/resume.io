@@ -637,7 +637,7 @@
         <h2
           class="text-xl font-semibold text-teal-400 border-b border-teal-500 pb-2"
         >
-          Work Experience
+          Work Experience <span id="totalexp"></span>
         </h2>
         <div class="mt-3 space-y-4">
           <div
@@ -645,7 +645,7 @@
           >
             <p class="text-lg font-semibold">
               Software Engineer - Royal Green Limited (September 2020 –
-              Continue)
+              Continue)<span id="rgl"></span>
             </p>
             <ul class="list-disc pl-6 space-y-2">
               <li>
@@ -661,7 +661,7 @@
             class="bg-gray-700 p-4 rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:scale-105 transform transition duration-300"
           >
             <p class="text-lg font-semibold">
-              Software Engineer - ESOL (Aug 2018 – September 2020)
+              Software Engineer - ESOL (Aug 2018 – September 2020)<span id="esol"></span>
             </p>
             <ul class="list-disc pl-6 space-y-2">
               <li>
@@ -680,7 +680,7 @@
             class="bg-gray-700 p-4 rounded-lg shadow-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:scale-105 transform transition duration-300"
           >
             <p class="text-lg font-semibold">
-              Junior Software Engineer - Opus Technology (Aug 2017 – Aug 2018)
+              Junior Software Engineer - Opus Technology (Aug 2017 – Aug 2018)<span id="opus"></span>
             </p>
             <ul class="list-disc pl-6 space-y-2">
               <li>
@@ -828,4 +828,108 @@
       </footer>
     </div>
   </body>
+   <script>
+        var globalobj=[];
+        function getDateDifferenceFromToday(dateInput) {
+            let startDate = new Date(dateInput);
+            let endDate = new Date(); 
+            let txt='';
+            if (startDate > endDate) {
+              [startDate, endDate] = [endDate, startDate];  
+            }
+    
+            let years = endDate.getFullYear() - startDate.getFullYear();
+            let months = endDate.getMonth() - startDate.getMonth();
+            let days = endDate.getDate() - startDate.getDate(); 
+            if (days < 0) {
+              months--;
+              let prevMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+              days += prevMonth.getDate();
+            }
+    
+            if (months < 0) {
+              years--;
+              months += 12;
+            }
+            txt += years > 1 ? ` ${years} years` : ` ${years} year`;
+            txt += months > 1 ? ` ${months} months` : ` ${months} month`;
+            txt += days > 1 ? ` ${days} days` : ` ${days} day`;
+            globalobj.push({years:years,months:months,days:days})
+          return txt.trim();
+          }
+          function getDateDifference(date1, date2) {
+      let startDate = new Date(date1);
+      let endDate = new Date(date2);
+      let txt = '';
+    
+      if (startDate > endDate) {
+        [startDate, endDate] = [endDate, startDate]; // Swap
+      }
+    
+      let years = endDate.getFullYear() - startDate.getFullYear();
+      let months = endDate.getMonth() - startDate.getMonth();
+      let days = endDate.getDate() - startDate.getDate();
+    
+      // Adjust months and years if needed
+      if (days < 0) {
+        months--;
+        let prevMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+    
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+    
+      txt += years > 0 ? ` ${years} years` : ` ${years} year`;
+      txt += months > 0 ? ` ${months} months` : ` ${months} month`;
+      txt += days > 0 ? ` ${days} days` : ` ${days} day`;
+      globalobj.push({years:years,months:months,days:days})
+      return txt.trim(); // Trim to clean up leading/trailing whitespace
+    }
+        const exprgl=document.getElementById('rgl');
+        const esol=document.getElementById('esol');
+        const opus=document.getElementById('opus');
+       if(exprgl){ 
+        const tme=getDateDifferenceFromToday('2020-09-10')
+        debugger
+        exprgl.innerHTML=` (${tme})`
+      }
+      if(esol){ 
+        const esoltme=getDateDifference('2018-08-01','2020-09-01')
+        debugger
+        esol.innerHTML=` (${esoltme})`
+      }
+      if(opus){ 
+        const opustme=getDateDifference('2017-08-01','2018-08-01')
+        debugger
+        opus.innerHTML=` (${opustme})`
+      }
+      const totalexp=document.getElementById('totalexp');
+      if(totalexp){
+        let totalYears = 0;
+        let totalMonths = 0;
+        let totalDays = 0;
+        let txt = ``;
+    
+      globalobj.forEach(item => {
+        totalYears += item.years;
+        totalMonths += item.months;
+        totalDays += item.days;
+      }); 
+      if (totalDays >= 30) {
+        totalMonths += Math.floor(totalDays / 30);
+        totalDays = totalDays % 30;
+      } 
+    if (totalMonths >= 12) {
+      totalYears += Math.floor(totalMonths / 12);
+      totalMonths = totalMonths % 12;
+    }
+    txt += totalYears > 0 ? ` ${totalYears} years` : ` ${totalYears} year`;
+    txt += totalMonths > 0 ? ` ${totalMonths} months` : ` ${totalMonths} month`;
+    txt += totalDays > 0 ? ` ${totalDays} days` : ` ${totalDays} day`;
+      totalexp.innerHTML=` (${txt})`
+    }
+  </script>
 </html>
